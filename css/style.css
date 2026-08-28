@@ -1996,8 +1996,8 @@ p,
 
 /* Mobile Performance & Cake Fix */
 @media (max-width: 768px) {
-    /* Stop lag by hiding extra heavy animations on mobile */
-    #cursorTrailCanvas, .floating-particle, .floating-heart {
+    /* Hide only heavy canvas trails, leaving floating hearts visible */
+    #cursorTrailCanvas, .floating-particle {
         display: none !important;
     }
     
