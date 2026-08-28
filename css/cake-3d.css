@@ -7,10 +7,13 @@
     justify-content: center;
     align-items: center;
     min-height: 600px;
-    margin: 2rem 0;
+    margin: 2rem auto;
     background: linear-gradient(180deg, rgba(244, 213, 169, 0.08), transparent);
     border-radius: 30px;
     padding: 2rem;
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
 }
 
 /* =========================
@@ -541,9 +544,28 @@
     transform: rotate(28deg);
 }
 
-/* Responsive */
-@media (max-width: 500px) {
+/* Responsive Fix for Mobile Cake Alignment */
+@media (max-width: 768px) {
+    .cake-3d-container {
+        min-height: 400px;
+        padding: 0.5rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
     .scene {
-        transform: scale(0.82);
+        transform: scale(0.6) !important;
+        transform-origin: center center;
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 500px) {
+    .cake-3d-container {
+        min-height: 350px;
+    }
+    .scene {
+        transform: scale(0.5) !important;
     }
 }
