@@ -1,0 +1,549 @@
+/* ============================================
+   3D REALISTIC CAKE STYLES
+   ============================================ */
+
+.cake-3d-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 600px;
+    margin: 2rem 0;
+    background: linear-gradient(180deg, rgba(244, 213, 169, 0.08), transparent);
+    border-radius: 30px;
+    padding: 2rem;
+}
+
+/* =========================
+   3D SCENE
+========================= */
+
+.scene {
+    width: 430px;
+    height: 520px;
+    position: relative;
+    perspective: 1100px;
+}
+
+/* Ground shadow */
+.ground-shadow {
+    position: absolute;
+    width: 350px;
+    height: 55px;
+    left: 40px;
+    bottom: 45px;
+    background: rgba(50, 25, 20, 0.18);
+    border-radius: 50%;
+    filter: blur(14px);
+    transform: rotateX(70deg);
+}
+
+/* =========================
+   PLATE
+========================= */
+.plate {
+    position: absolute;
+    width: 350px;
+    height: 48px;
+    left: 40px;
+    bottom: 50px;
+    border-radius: 50%;
+    background: linear-gradient(to bottom, #ffffff 0%, #f8edf1 55%, #dfcdd3 100%);
+    box-shadow:
+        0 10px 15px rgba(50, 30, 35, 0.22),
+        inset 0 5px 8px rgba(255, 255, 255, 0.9);
+    transform: rotateX(65deg) translateZ(0);
+    z-index: 1;
+}
+
+/* =========================
+   CAKE
+========================= */
+.cake {
+    position: absolute;
+    width: 310px;
+    height: 360px;
+    left: 60px;
+    bottom: 70px;
+    transform-style: preserve-3d;
+    z-index: 5;
+}
+
+/* =========================
+   COMMON CAKE LAYER
+========================= */
+.layer {
+    position: absolute;
+    transform-style: preserve-3d;
+    border-radius: 12px 12px 7px 7px;
+    background: linear-gradient(90deg, #c98532 0%, #e8a94b 5%, #ffe2a0 15%, #ffd170 48%, #f2b34f 82%, #c77b29 100%);
+    border: 1px solid #d3953e;
+    box-shadow:
+        inset 8px 0 13px rgba(115, 55, 10, 0.14),
+        inset -8px 0 13px rgba(120, 60, 10, 0.18),
+        inset 0 8px 10px rgba(255, 255, 255, 0.45),
+        0 9px 16px rgba(65, 30, 10, 0.22);
+}
+
+/* =========================
+   BOTTOM LAYER
+========================= */
+.bottom {
+    width: 310px;
+    height: 86px;
+    left: 0;
+    bottom: 0;
+    opacity: 0;
+    transform: translate3d(0, -280px, 70px) rotateX(8deg) scale(0.94);
+    animation: bottomDrop 1.3s cubic-bezier(0.2, 0.85, 0.2, 1) forwards;
+    animation-delay: 0.6s;
+}
+
+/* =========================
+   MIDDLE LAYER
+========================= */
+.middle {
+    width: 255px;
+    height: 78px;
+    left: 27px;
+    bottom: 83px;
+    opacity: 0;
+    transform: translate3d(0, -250px, 60px) rotateX(8deg) scale(0.94);
+    animation: middleDrop 1.2s cubic-bezier(0.2, 0.85, 0.2, 1) forwards;
+    animation-delay: 1.95s;
+}
+
+/* =========================
+   TOP LAYER
+========================= */
+.top {
+    width: 205px;
+    height: 70px;
+    left: 52px;
+    bottom: 157px;
+    opacity: 0;
+    transform: translate3d(0, -220px, 50px) rotateX(8deg) scale(0.94);
+    animation: topDrop 1.15s cubic-bezier(0.2, 0.85, 0.2, 1) forwards;
+    animation-delay: 3.2s;
+}
+
+/* Layer drop animations */
+@keyframes bottomDrop {
+    0% {
+        opacity: 0;
+        transform: translate3d(0, -280px, 70px) rotateX(8deg) scale(0.94);
+    }
+    65% {
+        opacity: 1;
+        transform: translate3d(0, 8px, 70px) rotateX(8deg) scale(1.02);
+    }
+    82% {
+        transform: translate3d(0, -4px, 70px) rotateX(8deg) scale(0.995);
+    }
+    100% {
+        opacity: 1;
+        transform: translate3d(0, 0, 70px) rotateX(8deg) scale(1);
+    }
+}
+
+@keyframes middleDrop {
+    0% {
+        opacity: 0;
+        transform: translate3d(0, -250px, 60px) rotateX(8deg) scale(0.94);
+    }
+    65% {
+        opacity: 1;
+        transform: translate3d(0, 8px, 60px) rotateX(8deg) scale(1.02);
+    }
+    82% {
+        transform: translate3d(0, -4px, 60px) rotateX(8deg) scale(0.995);
+    }
+    100% {
+        opacity: 1;
+        transform: translate3d(0, 0, 60px) rotateX(8deg) scale(1);
+    }
+}
+
+@keyframes topDrop {
+    0% {
+        opacity: 0;
+        transform: translate3d(0, -220px, 50px) rotateX(8deg) scale(0.94);
+    }
+    65% {
+        opacity: 1;
+        transform: translate3d(0, 8px, 50px) rotateX(8deg) scale(1.02);
+    }
+    82% {
+        transform: translate3d(0, -4px, 50px) rotateX(8deg) scale(0.995);
+    }
+    100% {
+        opacity: 1;
+        transform: translate3d(0, 0, 50px) rotateX(8deg) scale(1);
+    }
+}
+
+/* =========================
+   TOP SURFACE
+========================= */
+.top-surface {
+    position: absolute;
+    width: 100%;
+    height: 35px;
+    top: -17px;
+    left: 0;
+    border-radius: 50%;
+    background: radial-gradient(ellipse at center, #ffe8ad 0%, #ffd273 60%, #e9a340 100%);
+    border: 1px solid #d7983e;
+    transform: rotateX(65deg) translateZ(5px);
+    box-shadow: inset 0 5px 8px rgba(255, 255, 255, 0.5);
+}
+
+/* =========================
+   CREAM
+========================= */
+.cream {
+    position: absolute;
+    top: -8px;
+    left: -3px;
+    width: calc(100% + 6px);
+    height: 15px;
+    z-index: 10;
+    background: radial-gradient(ellipse at center, #fff 0 7px, #f8f1f2 8px, transparent 9px);
+    background-size: 25px 15px;
+    filter: drop-shadow(0 3px 2px rgba(90, 45, 45, 0.15));
+}
+
+/* =========================
+   CREAM SIDE DRIPS
+========================= */
+.cream-drip {
+    position: absolute;
+    top: 4px;
+    width: 13px;
+    background: linear-gradient(90deg, #eee6e7, #ffffff 35%, #f3eeee 100%);
+    border-radius: 0 0 9px 9px;
+    transform-origin: top;
+    transform: scaleY(0);
+    animation: frostingFall 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+.bottom .cream-drip {
+    animation-delay: 1.35s;
+}
+
+.middle .cream-drip {
+    animation-delay: 2.7s;
+}
+
+.top .cream-drip {
+    animation-delay: 4s;
+}
+
+@keyframes frostingFall {
+    0% {
+        transform: scaleY(0);
+    }
+    65% {
+        transform: scaleY(1.12);
+    }
+    82% {
+        transform: scaleY(0.92);
+    }
+    100% {
+        transform: scaleY(1);
+    }
+}
+
+.cd1 {
+    left: 17%;
+    height: 27px;
+}
+
+.cd2 {
+    left: 43%;
+    height: 42px;
+}
+
+.cd3 {
+    left: 70%;
+    height: 30px;
+}
+
+.cd4 {
+    left: 87%;
+    height: 22px;
+}
+
+/* =========================
+   CHOCOLATE
+========================= */
+.chocolate {
+    position: absolute;
+    left: 0;
+    top: -1px;
+    width: 100%;
+    height: 23px;
+    z-index: 12;
+    border-radius: 10px 10px 5px 5px;
+    background: linear-gradient(180deg, #754021 0%, #542713 48%, #32150b 100%);
+    box-shadow: inset 0 3px 5px rgba(255, 255, 255, 0.12), 0 3px 4px rgba(50, 20, 5, 0.25);
+}
+
+.chocolate::after {
+    content: "";
+    position: absolute;
+    width: 70%;
+    height: 4px;
+    left: 15%;
+    top: 4px;
+    background: rgba(255, 255, 255, 0.14);
+    border-radius: 50%;
+    filter: blur(1px);
+}
+
+/* =========================
+   CHOCOLATE DRIPS
+========================= */
+.choco-drip {
+    position: absolute;
+    top: 15px;
+    background: linear-gradient(90deg, #321308, #5a2914, #351409);
+    border-radius: 0 0 12px 12px;
+    box-shadow: inset 2px 0 3px rgba(255, 255, 255, 0.08);
+}
+
+.ch1 {
+    left: 12%;
+    width: 20px;
+    height: 28px;
+}
+
+.ch2 {
+    left: 38%;
+    width: 23px;
+    height: 42px;
+}
+
+.ch3 {
+    left: 65%;
+    width: 19px;
+    height: 31px;
+}
+
+.ch4 {
+    left: 84%;
+    width: 20px;
+    height: 24px;
+}
+
+/* =========================
+   CANDLES
+========================= */
+.candles {
+    position: absolute;
+    inset: 0;
+    z-index: 50;
+    pointer-events: none;
+}
+
+.candle {
+    position: absolute;
+    width: 24px;
+    height: 75px;
+    bottom: 228px;
+    border-radius: 6px;
+    background: linear-gradient(90deg, #d72d61 0%, #ff668e 25%, #ff8cab 48%, #dc3265 100%);
+    border: 1px solid #c72b58;
+    box-shadow: inset 4px 0 5px rgba(255, 255, 255, 0.35), 3px 5px 8px rgba(60, 25, 35, 0.25);
+    cursor: pointer;
+    pointer-events: auto;
+    opacity: 0;
+    transform: translateY(-170px) scale(0.75);
+    transition: all 0.3s ease;
+}
+
+.candle.one {
+    left: 75px;
+    animation: candleDrop 0.8s cubic-bezier(0.2, 0.85, 0.2, 1) forwards;
+    animation-delay: 4.25s;
+}
+
+.candle.two {
+    left: 140px;
+    animation: candleDrop 0.8s cubic-bezier(0.2, 0.85, 0.2, 1) forwards;
+    animation-delay: 4.55s;
+}
+
+.candle.three {
+    left: 205px;
+    animation: candleDrop 0.8s cubic-bezier(0.2, 0.85, 0.2, 1) forwards;
+    animation-delay: 4.85s;
+}
+
+@keyframes candleDrop {
+    0% {
+        opacity: 0;
+        transform: translateY(-170px) scale(0.75);
+    }
+    70% {
+        opacity: 1;
+        transform: translateY(7px) scale(1.06);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.candle::before {
+    content: "";
+    position: absolute;
+    width: 24px;
+    height: 9px;
+    left: -1px;
+    top: -3px;
+    background: radial-gradient(ellipse, #ffdce6, #f26a91);
+    border-radius: 50%;
+}
+
+.candle::after {
+    content: "";
+    position: absolute;
+    width: 7px;
+    height: 15px;
+    left: 4px;
+    top: 2px;
+    background: #ffe0e8;
+    border-radius: 0 0 6px 6px;
+}
+
+.candle:hover {
+    transform: scale(1.08);
+    box-shadow: inset 4px 0 5px rgba(255, 255, 255, 0.35), 3px 5px 12px rgba(60, 25, 35, 0.4);
+}
+
+/* Wick */
+.wick {
+    position: absolute;
+    width: 3px;
+    height: 11px;
+    left: 10px;
+    top: -12px;
+    background: #28201b;
+    border-radius: 3px;
+}
+
+/* =========================
+   REALISTIC FLAME
+========================= */
+.flame {
+    position: absolute;
+    width: 31px;
+    height: 47px;
+    left: -4px;
+    top: -56px;
+    background: radial-gradient(ellipse at center bottom, #ffffff 2%, #fff4a1 22%, #ffd52e 43%, #ff8a00 68%, transparent 73%);
+    border-radius: 50% 50% 45% 45%;
+    transform-origin: bottom center;
+    animation: flameMove 0.65s ease-in-out infinite alternate, flameGlow 1s ease-in-out infinite alternate;
+    filter: drop-shadow(0 0 10px #ffb000);
+}
+
+.flame::before {
+    content: "";
+    position: absolute;
+    width: 9px;
+    height: 17px;
+    left: 11px;
+    bottom: 2px;
+    background: #fff;
+    border-radius: 50%;
+    filter: blur(2px);
+}
+
+@keyframes flameMove {
+    from {
+        transform: rotate(-8deg) scale(1);
+    }
+    to {
+        transform: rotate(8deg) scale(1.13);
+    }
+}
+
+@keyframes flameGlow {
+    from {
+        filter: drop-shadow(0 0 6px #ffb000);
+    }
+    to {
+        filter: drop-shadow(0 0 20px #ff9800);
+    }
+}
+
+/* =========================
+   SMOKE
+========================= */
+.smoke {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    left: 7px;
+    top: -20px;
+    border-radius: 50%;
+    background: rgba(100, 100, 100, 0.32);
+    opacity: 0;
+}
+
+.candle.off .flame {
+    display: none;
+}
+
+.candle.off .smoke {
+    animation: smoke 1.5s ease-out forwards;
+}
+
+@keyframes smoke {
+    0% {
+        opacity: 0.8;
+        transform: translate(0, 0) scale(0.8);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(13px, -42px) scale(2.5);
+    }
+}
+
+/* =========================
+   SMALL DECORATION
+========================= */
+.sugar {
+    position: absolute;
+    width: 5px;
+    height: 12px;
+    background: #fff;
+    border-radius: 5px;
+    z-index: 20;
+}
+
+.sugar.a {
+    left: 20%;
+    bottom: 25px;
+    transform: rotate(20deg);
+}
+
+.sugar.b {
+    left: 49%;
+    bottom: 33px;
+    transform: rotate(-20deg);
+}
+
+.sugar.c {
+    left: 74%;
+    bottom: 21px;
+    transform: rotate(28deg);
+}
+
+/* Responsive */
+@media (max-width: 500px) {
+    .scene {
+        transform: scale(0.82);
+    }
+}

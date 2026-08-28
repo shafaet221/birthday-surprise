@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday, Dulu Sona ❤️</title>
+    
+    <!-- Google Fonts CDN -->
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:wght@300;400;600;700&family=Noto+Serif+Bengali:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- External CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/cake-3d.css">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+</head>
+<body>
+    <!-- SPLASH SCREEN (OPENING EXPERIENCE) -->
+    <div class="splash-screen" id="splashScreen">
+        <div class="splash-content">
+            <div class="splash-star">✨</div>
+            <div class="splash-line">A Special Person's Birthday…</div>
+            <div class="splash-line">Who Makes My World a Little More Beautiful…</div>
+            <div class="splash-name">Nusrat Jahan Dina<br>(Dulu Sona)</div>
+            <div class="splash-final">A Little Surprise, Made Just for You., Dinuu ❤️</div>
+            <button class="enter-btn" id="enterBtn">Enter the Surprise ✨</button>
+        </div>
+    </div>
+
+    <!-- CANVAS ELEMENTS -->
+    <canvas id="nightSkyCanvas"></canvas>
+    <canvas id="cursorTrailCanvas"></canvas>
+
+    <!-- MAIN CONTENT -->
+    <div class="container">
+        <!-- HERO SECTION -->
+        <section class="hero scroll-reveal">
+            <h1>Happy Birthday</h1>
+            <h2>Duluu(Nusrat Jahan Dina) ❤️</h2>
+            <p class="bengali-text">তোমার হাসিটা যেন আমার প্রতিদিনের সবচেয়ে সুন্দর আলো।</p>
+            <div class="signature shine-sweep">With all my heart…</div>
+        </section>
+
+       <!-- 3D FLOATING HEART -->
+        <section class="heart-container scroll-reveal">
+            <div class="heart-3d" id="heart3d">
+                <div class="heart-shape">
+                    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="heartGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#ff3366;stop-opacity:1" />
+                                <stop offset="50%" style="stop-color:#ff1a40;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#cc0033;stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                        <path d="M50,85 C25,70 10,55 10,40 C10,28 18,18 28,18 C35,18 42,22 50,30 C58,22 65,18 72,18 C82,18 90,28 90,40 C90,55 75,70 50,85 Z" 
+                              fill="url(#heartGradient)" stroke="#ff6685" stroke-width="1.5"/>
+                    </svg>
+                </div>
+                <div class="heart-text"></div>
+            </div>
+        </section>
+        
+        <!-- LOVE STORY SECTION -->
+        <section class="love-story scroll-reveal">
+            <h2>তোমাকে নিয়ে আমার ছোট্ট একটা গল্প…</h2>
+            <div class="memory-cards">
+                <div class="memory-card">
+                    <h3>✨ প্রথম দেখা ✨</h3>
+                    <p>তোমাকে প্রথম দেখেছিলাম কলেজে... আমাদের ডিপার্টমেন্টের সামনে ☺️। তখন ফার্স্ট সেমিস্টার... সেই মুহূর্তটায় হঠাৎ করে তোমার হাসি আর তোমার চোখ দুটো দেখে মনের ভেতরটা কেমন যেন করে উঠেছিল! 🫠
+
+এরপর আস্তে আস্তে সবকিছু পেরিয়ে... পরিচয় হলো, তারপর কথা বলা শুরু... এর মাঝে কখন যে তোমাকে এতটা ভালোবেসে ফেলেছি, আমি নিজেও জানি না। তোমার প্রতি কতটা দুর্বল হয়ে পড়েছি, তা হয়তো তুমিও বোঝো না। সেই প্রথম দেখা তোমার মায়ায় ভরা চোখ, পৃথিবীতে যা-ই হয়ে যাক না কেন... আমি কখনোই ভুলতে পারবো না... ✨
+
+জানো, সারাদিন মন যতই খারাপ থাকুক না কেন, তুমি ফোন দিলে, কথা বলতে বলতে তোমার হাসির শব্দ শুনলে আমার যে কতটা ভালো লাগে, তা আমি কখনোই বলে বোঝাতে পারবো না... 🥺 আমি আছি সবসময়ই তোমার সাথে... ☺️🤗
+
+তোমাকে পাওয়ার খুব শখ ছিল... পাওয়ার পর ভেবেছিলাম জীবনে আর কিছু চাওয়ার নেই... কিন্তু আবার যে পরিস্থিতি এমন হবে... 😔😮‍💨 যাক, সবকিছু হয়তো আমার ভুলের জন্যই... ☺️। আমি কখনোই চাই না আমার জন্য তুমি কোনো কষ্ট পাও 😊।
+
+আমার একটাই চাওয়া, তুমি সবসময় খুশি থাকো... তুমি অনেক সুখী হও... তোমার সব কষ্ট আল্লাহ যেন দূর করে দেন 🤲✨।
+
+আজও তোমাকে খুব ভালোবাসি জান, আর সবসময় এভাবেই ভালোবেসে যাবো। আমি তোমাকে সারা জীবন ঠিক এমনই ভালোবেসে যাবো। ❤️    I love you sonaaa jaaaaaan amar🥰🌹❤️</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3D POLAROID CAROUSEL -->
+        <section class="carousel-section scroll-reveal">
+            <h2>Amar kichu valo laga..</h2>
+            <div class="carousel-container">
+                <div class="polaroid-carousel" id="polaroidCarousel"></div>
+            </div>
+            <div class="carousel-controls">
+                <button class="carousel-btn" id="prevBtn">← Previous</button>
+                <button class="carousel-btn" id="nextBtn">Next →</button>
+            </div>
+        </section>
+
+        <!-- THREE LITTLE THINGS -->
+        <section class="three-things scroll-reveal">
+            <h2>তোমার যে তিনটি দিক আমাকে সবচেয়ে বেশি মুগ্ধ করে....<span class="emoji-fix">🥰</span></h2>
+            <div class="things-grid">
+                <div class="thing-card">
+                    <h3>✨ তোমার মায়াবী চোখ দুটি আর তোমার হাসি</h3>
+                    <p>"তোমার ওই মায়াবী চোখ দুটো... আমি যেন তোমার চোখের গভীরেই আটকে গেছি 👀✨। যখন তুমি হাসো, তখন মনে হয় আমার চারপাশের পুরো পৃথিবীটা আলোকিত হয়ে গেছে 🌍💫। তোমার ওই মিষ্টি হাসিটা দেখলে আমার মনের ভেতরে অদ্ভুত একটা শান্তি কাজ করে 🥰❤️।"</p>
+                </div>
+                <div class="thing-card">
+                    <h3>💕 তোমার মায়া</h3>
+                    <p>"তোমার ওই মায়াভরা যত্ন, তোমার নিঃস্বার্থ ভালোবাসা, আর তোমার কথাগুলো—সবকিছু মিলে আমাকে পরিপূর্ণ করে দেয়।
+ 🥰❤️✨"</p>
+                </div>
+                <div class="thing-card">
+                    <h3>🤍 তোমার পাশে থাকার অনুভূতি</h3>
+                    <p>"তোমার সাথে কাটানো প্রতিটা মুহূর্তেই মনে হয়, এটাই জীবনের আসল অর্থ 💖। তুমি আমার একমাত্র শান্তির জায়গা 🥰। যখন তোমার পাশে বসে তোমার হাতটা ধরি, এক নিমিষেই আমার সব কষ্ট যেন দূরে হারিয়ে যায় ❤️।"।</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- LOVE LETTER SECTION -->
+        <section class="love-letter-section scroll-reveal">
+            <h2>একটা চিঠি শুধু তোমার জন্য…</h2>
+            <div class="envelope" id="envelope" role="button" tabindex="0" aria-label="প্রেমের চিঠি খুলুন" aria-controls="letterModal" aria-expanded="false">
+                <div class="envelope-flap"></div>
+                <div class="envelope-content">💌</div>
+            </div>
+            <p class="letter-prompt">চিঠিটা খুলতে touch Koro 💌</p>
+        </section>
+
+        <div class="letter-modal" id="letterModal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="letterModalTitle">
+            <div class="letter-page">
+                <button class="letter-close" id="letterClose" type="button" aria-label="চিঠি বন্ধ করুন">&times;</button>
+                <p class="letter-kicker">শুধু তোমার জন্য</p>
+                <h2 id="letterModalTitle">আমার মনের কীছু কথা</h2>
+                <div class="letter-text" id="letterText" aria-live="polite"></div>
+            </div>
+        </div>
+
+        <!-- BIRTHDAY CAKE SECTION -->
+        <section class="cake-section scroll-reveal">
+            <h2><span class="emoji-fix">🎂</span> Birthday Cake - Click Candles to Blow Out! <span class="emoji-fix">🎂</span></h2>
+            
+            <div class="cake-3d-container">
+                <div class="scene">
+                    <div class="ground-shadow"></div>
+                    <div class="plate"></div>
+
+                    <div class="cake">
+                        <!-- BOTTOM LAYER -->
+                        <div class="layer bottom">
+                            <div class="top-surface"></div>
+                            <div class="cream">
+                                <div class="cream-drip cd1"></div>
+                                <div class="cream-drip cd2"></div>
+                                <div class="cream-drip cd3"></div>
+                                <div class="cream-drip cd4"></div>
+                            </div>
+                            <div class="chocolate">
+                                <div class="choco-drip ch1"></div>
+                                <div class="choco-drip ch2"></div>
+                                <div class="choco-drip ch3"></div>
+                                <div class="choco-drip ch4"></div>
+                            </div>
+                            <div class="sugar a"></div>
+                            <div class="sugar b"></div>
+                            <div class="sugar c"></div>
+                        </div>
+
+                        <!-- MIDDLE LAYER -->
+                        <div class="layer middle">
+                            <div class="top-surface"></div>
+                            <div class="cream">
+                                <div class="cream-drip cd1"></div>
+                                <div class="cream-drip cd2"></div>
+                                <div class="cream-drip cd3"></div>
+                                <div class="cream-drip cd4"></div>
+                            </div>
+                            <div class="chocolate">
+                                <div class="choco-drip ch1"></div>
+                                <div class="choco-drip ch2"></div>
+                                <div class="choco-drip ch3"></div>
+                                <div class="choco-drip ch4"></div>
+                            </div>
+                        </div>
+
+                        <!-- TOP LAYER -->
+                        <div class="layer top">
+                            <div class="top-surface"></div>
+                            <div class="cream">
+                                <div class="cream-drip cd1"></div>
+                                <div class="cream-drip cd2"></div>
+                                <div class="cream-drip cd3"></div>
+                            </div>
+                            <div class="chocolate">
+                                <div class="choco-drip ch1"></div>
+                                <div class="choco-drip ch2"></div>
+                                <div class="choco-drip ch3"></div>
+                            </div>
+                        </div>
+
+                        <!-- CANDLES -->
+                            <div class="candles">
+                                <div class="candle one">
+                                <div class="wick"></div>
+        <div class="flame"></div>
+        <div class="smoke"></div>
+    </div>
+    <div class="candle two">
+        <div class="wick"></div>
+        <div class="flame"></div>
+        <div class="smoke"></div>
+    </div>
+    <div class="candle three">
+        <div class="wick"></div>
+        <div class="flame"></div>
+        <div class="smoke"></div>
+    </div>
+</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 2rem; font-size: 1.2rem; color: #d4af8c;">
+                💫 Click the candles to blow them out and make a wish! 💫
+            </div>
+        </section>
+
+        <!-- SPECIAL DATE COUNTER -->
+        <section class="date-counter-section scroll-reveal" id="counterSection" style="display:none;">
+            <h2>আমাদের গল্পের শুরু থেকে…</h2>
+            <div class="counter" id="counter"></div>
+        </section>
+
+        <!-- VOICE NOTE & SECRET SURPRISE -->
+        <section class="voice-section scroll-reveal" id="voiceSection" style="display:none;">
+            <div class="voice-player" id="voicePlayer">
+                <p style="color:#d4af8c; margin-bottom:1rem;">🎙️ A Secret Voice Message from Me</p>
+                <audio id="voiceAudio" controls style="width:100%;"></audio>
+            </div>
+            <button class="secret-button" id="secretBtn">একটা শেষ surprise আছে… 🤫</button>
+        </section>
+
+        <!-- FINAL SECTION -->
+        <section class="final-section scroll-reveal">
+            <h1>Happy Birthday, dulu sona ❤️</h1>
+            <p>তোমার পৃথিবীটা সবসময় ভালোবাসায় ভরা থাকুক।</p>
+            <div class="final-signature">Forever yours… <span class="pulsing-heart">❤️</span></div>
+        </section>
+    </div>
+
+    <!-- External JavaScript -->
+    <script src="js/script.js"></script>
+    <!-- Enhancement Scripts -->
+    <script src="js/enhancements.js"></script>
+    <script src="js/monbati.js"></script>
+</body>
+</html>
