@@ -3,17 +3,18 @@
    ============================================ */
 
 .cake-3d-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 600px;
-    margin: 2rem auto;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    min-height: 550px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 1.5rem auto !important;
     background: linear-gradient(180deg, rgba(244, 213, 169, 0.08), transparent);
     border-radius: 30px;
-    padding: 2rem;
-    width: 100%;
-    max-width: 100%;
-    overflow: hidden;
+    padding: 1rem !important;
+    overflow: hidden !important;
+    box-sizing: border-box !important;
 }
 
 /* =========================
@@ -25,6 +26,7 @@
     height: 520px;
     position: relative;
     perspective: 1100px;
+    margin: 0 auto !important;
 }
 
 /* Ground shadow */
@@ -544,28 +546,33 @@
     transform: rotate(28deg);
 }
 
-/* Responsive Fix for Mobile Cake Alignment */
+/* =========================
+   MOBILE PERFECTION: CENTERING & SCALING
+========================= */
 @media (max-width: 768px) {
     .cake-3d-container {
-        min-height: 400px;
-        padding: 0.5rem;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        min-height: 420px !important;
+        padding: 0.5rem !important;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        width: 100% !important;
     }
     
     .scene {
-        transform: scale(0.6) !important;
-        transform-origin: center center;
-        margin: 0 auto;
+        transform: scale(0.62) !important;
+        transform-origin: center center !important;
+        margin: 0 auto !important;
+        left: 0 !important;
+        right: 0 !important;
     }
 }
 
-@media (max-width: 500px) {
+@media (max-width: 480px) {
     .cake-3d-container {
-        min-height: 350px;
+        min-height: 360px !important;
     }
     .scene {
-        transform: scale(0.5) !important;
+        transform: scale(0.53) !important;
     }
 }
