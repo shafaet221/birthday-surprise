@@ -547,32 +547,32 @@
 }
 
 /* =========================
-   MOBILE PERFECTION: CENTERING & SCALING
+   MOBILE PERFECTION: ABSOLUTE CENTERING
 ========================= */
 @media (max-width: 768px) {
     .cake-3d-container {
         min-height: 420px !important;
-        padding: 0.5rem !important;
-        display: flex !important;
-        justify-content: center !important;
-        align-items: center !important;
+        padding: 0 !important;
         width: 100% !important;
+        position: relative !important; 
+        display: block !important;
     }
     
     .scene {
-        transform: scale(0.62) !important;
+        position: absolute !important; 
+        left: 50% !important; 
+        top: 50% !important;
+        transform: translate(-50%, -50%) scale(0.62) !important; 
         transform-origin: center center !important;
-        margin: 0 auto !important;
-        left: 0 !important;
-        right: 0 !important;
+        margin: 0 !important;
     }
 }
 
 @media (max-width: 480px) {
     .cake-3d-container {
-        min-height: 360px !important;
+        min-height: 380px !important;
     }
     .scene {
-        transform: scale(0.53) !important;
+        transform: translate(-50%, -50%) scale(0.53) !important;
     }
 }
