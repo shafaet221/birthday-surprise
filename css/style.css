@@ -2028,11 +2028,9 @@ p,
 }
 
 /* ============================================
-   MOBILE CAROUSEL & CAKE CENTERING FIX
+   MOBILE CAROUSEL FIX (ONLY GALLERY)
    ============================================ */
-
 @media (max-width: 768px) {
-    /* Carousel Fix */
     .carousel-container {
         height: 420px !important;
         padding: 1rem 0.5rem !important;
@@ -2054,6 +2052,7 @@ p,
         transform: translate(-50%, -50%) scale(0.7) !important;
         opacity: 0 !important;
         pointer-events: none !important;
+        transition: all 0.4s ease-in-out !important;
     }
 
     .polaroid.active {
@@ -2090,35 +2089,9 @@ p,
         font-size: 1rem !important;
         padding: 0.5rem 1rem !important;
     }
-
-    /* Cake Centering Fix */
-    .cake-3d-container {
-        display: flex !important;
-        justify-content: center !important;
-        align-items: center !important;
-        min-height: 420px !important;
-        width: 100% !important;
-        max-width: 100% !important;
-        overflow: hidden !important;
-        padding: 1rem 0 !important;
-    }
-
-    .scene {
-        width: 100% !important;
-        max-width: 430px !important;
-        height: 420px !important;
-        transform: scale(0.62) !important;
-        transform-origin: center center !important;
-        margin: 0 auto !important;
-        left: 0 !important;
-        right: 0 !important;
-    }
 }
 
 @media (max-width: 480px) {
-    .scene {
-        transform: scale(0.53) !important;
-    }
     .polaroid {
         width: 210px !important;
         height: 290px !important;
@@ -2126,4 +2099,12 @@ p,
     .polaroid-image {
         height: 195px !important;
     }
+}
+
+/* Disable image/icon selection highlight on mobile touch */
+img, .heart-icon, .floating-heart, svg {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
 }
