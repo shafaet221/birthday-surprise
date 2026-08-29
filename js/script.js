@@ -73,7 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /* ============================================
-   SPLASH SCREEN LOGIC & FIREWORKS
+   SPLASH SCREEN LOGIC & FULL-SCREEN FIREWORKS
    ============================================ */
 function initializeSplashScreen() {
     const enterBtn = document.getElementById('enterBtn');
@@ -84,10 +84,10 @@ function initializeSplashScreen() {
             splashScreen.style.pointerEvents = 'none';
         }, 800);
 
-        // ১. ঘন ঝিরি ঝিরি কনফেটি (আসল লাইব্রেরি থেকে)
+        // 1. Full-screen dense confetti from center, left, and right
         fireDenseConfetti();
 
-        // ২. লাভ ও বেলুন ইমোজি
+        // 2. Flying balloon and heart emojis
         fireEmojiBalloons();
     });
 
@@ -99,13 +99,14 @@ function initializeSplashScreen() {
 }
 
 // ==========================================
-// ঘন কনফেটি (ছবিতে যেমন চেয়েছো ঠিক তেমন)
+// Full-Screen Confetti Effect
 // ==========================================
 function fireDenseConfetti() {
     if (typeof confetti === "function") {
-        var count = 350; // অনেক ঘন করার জন্য
+        var count = 400; 
+        
         var defaults = {
-            origin: { y: 0.5 },
+            origin: { y: 0.7 },
             zIndex: 999999
         };
 
@@ -115,17 +116,32 @@ function fireDenseConfetti() {
             }));
         }
 
-        // একসাথে বিশাল বিস্ফোরণ
-        fire(0.25, { spread: 26, startVelocity: 55 });
-        fire(0.2, { spread: 60 });
-        fire(0.35, { spread: 100, decay: 0.91, scalar: 0.8 });
-        fire(0.1, { spread: 120, startVelocity: 25, decay: 0.92, scalar: 1.2 });
-        fire(0.1, { spread: 120, startVelocity: 45 });
+        // Center explosions
+        fire(0.25, { spread: 30, startVelocity: 60 });
+        fire(0.2, { spread: 70 });
+        
+        // Left side explosion
+        confetti({
+            particleCount: 100,
+            angle: 60,
+            spread: 80,
+            origin: { x: 0, y: 0.6 },
+            zIndex: 999999
+        });
+
+        // Right side explosion
+        confetti({
+            particleCount: 100,
+            angle: 120,
+            spread: 80,
+            origin: { x: 1, y: 0.6 },
+            zIndex: 999999
+        });
     }
 }
 
 // ==========================================
-// বেলুন এবং লাভ শেপ ফাংশন
+// Emoji Balloons & Hearts Function
 // ==========================================
 function fireEmojiBalloons() {
     const emojis = ['🎈', '❤️', '💖', '💕']; 
@@ -197,7 +213,6 @@ function initializeNightSky() {
             ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
             ctx.fill();
             
-            // Glow
             ctx.fillStyle = `rgba(212, 175, 140, ${this.opacity * 0.3})`;
             ctx.beginPath();
             ctx.arc(this.x, this.y, this.radius * 3, 0, Math.PI * 2);
@@ -231,7 +246,6 @@ function initializeNightSky() {
             ctx.lineTo(this.x - this.vx * this.length, this.y - this.vy * this.length);
             ctx.stroke();
 
-            // Glow
             ctx.strokeStyle = `rgba(212, 175, 140, ${this.opacity * 0.5})`;
             ctx.lineWidth = 4;
             ctx.beginPath();
