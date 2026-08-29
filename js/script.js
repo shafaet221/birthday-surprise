@@ -73,7 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /* ============================================
-   SPLASH SCREEN LOGIC & FULL-SCREEN MAGIC
+   SPLASH SCREEN LOGIC & FIREWORKS
    ============================================ */
 function initializeSplashScreen() {
     const enterBtn = document.getElementById('enterBtn');
@@ -84,11 +84,13 @@ function initializeSplashScreen() {
             splashScreen.style.pointerEvents = 'none';
         }, 800);
 
-        // ফুল-স্ক্রিন বেলুন এবং ঝিরি ঝিরি কাগজ ফাটানোর কল
-        fireworksAndBalloons();
+        // ১. ঘন ঝিরি ঝিরি কনফেটি (আসল লাইব্রেরি থেকে)
+        fireDenseConfetti();
+
+        // ২. লাভ ও বেলুন ইমোজি
+        fireEmojiBalloons();
     });
 
-    // Auto-hide splash after 10 seconds
     setTimeout(() => {
         if (!document.getElementById('splashScreen').classList.contains('hidden')) {
             document.getElementById('splashScreen').classList.add('hidden');
@@ -97,29 +99,54 @@ function initializeSplashScreen() {
 }
 
 // ==========================================
-// ফুল-স্ক্রিন ঝিরি ঝিরি কাগজ এবং বেলুন ফাংশন
+// ঘন কনফেটি (ছবিতে যেমন চেয়েছো ঠিক তেমন)
 // ==========================================
-function fireworksAndBalloons() {
+function fireDenseConfetti() {
+    if (typeof confetti === "function") {
+        var count = 350; // অনেক ঘন করার জন্য
+        var defaults = {
+            origin: { y: 0.5 },
+            zIndex: 999999
+        };
+
+        function fire(particleRatio, opts) {
+            confetti(Object.assign({}, defaults, opts, {
+                particleCount: Math.floor(count * particleRatio)
+            }));
+        }
+
+        // একসাথে বিশাল বিস্ফোরণ
+        fire(0.25, { spread: 26, startVelocity: 55 });
+        fire(0.2, { spread: 60 });
+        fire(0.35, { spread: 100, decay: 0.91, scalar: 0.8 });
+        fire(0.1, { spread: 120, startVelocity: 25, decay: 0.92, scalar: 1.2 });
+        fire(0.1, { spread: 120, startVelocity: 45 });
+    }
+}
+
+// ==========================================
+// বেলুন এবং লাভ শেপ ফাংশন
+// ==========================================
+function fireEmojiBalloons() {
     const emojis = ['🎈', '❤️', '💖', '💕']; 
-    const paperColors = ['#ff0a54', '#ff477e', '#ff7096', '#ff85a1', '#fbb1bd', '#ffd166', '#06d6a0', '#118ab2', '#073b4c', '#ffffff'];
+    const totalParticles = 40; 
     
-    // ১. বড় ইমোজি (বেলুন ও লাভ) - ৪০টা
-    for (let i = 0; i < 40; i++) {
+    for (let i = 0; i < totalParticles; i++) {
         let particle = document.createElement('div');
         particle.innerText = emojis[Math.floor(Math.random() * emojis.length)];
         particle.style.position = 'fixed';
         particle.style.left = '50vw';
         particle.style.top = '50vh'; 
-        particle.style.fontSize = (Math.random() * 25 + 20) + 'px'; 
+        particle.style.fontSize = (Math.random() * 30 + 20) + 'px'; 
         particle.style.zIndex = '999999';
         particle.style.pointerEvents = 'none';
         particle.style.transform = `translate(-50%, -50%) scale(0)`;
-        particle.style.transition = 'transform 3s cubic-bezier(0.1, 0.8, 0.3, 1), opacity 3s ease-out';
+        particle.style.transition = 'transform 3.5s cubic-bezier(0.1, 0.8, 0.3, 1), opacity 3.5s ease-out';
         
         document.body.appendChild(particle);
 
         const angle = Math.random() * Math.PI * 2;
-        const radius = Math.random() * 50 + 20; 
+        const radius = Math.random() * 60 + 20; 
         const tx = Math.cos(angle) * radius + 'vw';
         const ty = Math.sin(angle) * radius + 'vh';
 
@@ -128,42 +155,7 @@ function fireworksAndBalloons() {
             particle.style.opacity = '0';
         }, 10);
 
-        setTimeout(() => particle.remove(), 3000);
-    }
-
-    // ২. ঝিরি ঝিরি কাগজ (২০০ টুকরো - পুরো স্ক্রিন কভার করবে)
-    for (let i = 0; i < 200; i++) {
-        let paper = document.createElement('div');
-        paper.style.position = 'fixed';
-        paper.style.left = '50vw';
-        paper.style.top = '50vh';
-        
-        // কাগজের সাইজ
-        paper.style.width = (Math.random() * 8 + 4) + 'px';
-        paper.style.height = (Math.random() * 12 + 6) + 'px';
-        paper.style.backgroundColor = paperColors[Math.floor(Math.random() * paperColors.length)];
-        paper.style.zIndex = '999998'; 
-        paper.style.pointerEvents = 'none';
-        paper.style.transform = `translate(-50%, -50%) scale(0)`;
-        paper.style.transition = `transform ${Math.random() * 2 + 2}s cubic-bezier(0.25, 1, 0.5, 1), opacity 3s ease-out`;
-        
-        document.body.appendChild(paper);
-
-        // পুরো স্ক্রিনে ছড়ানোর ম্যাজিক
-        const angle = Math.random() * Math.PI * 2;
-        const radiusX = Math.random() * 80 + 20; // 100vw পর্যন্ত ছড়াবে
-        const radiusY = Math.random() * 80 + 20; 
-        
-        const tx = (Math.cos(angle) * radiusX) + 'vw';
-        const ty = (Math.sin(angle) * radiusY) + 'vh';
-        const spin = Math.random() * 720 + 360; // স্পিন করবে
-
-        setTimeout(() => {
-            paper.style.transform = `translate(calc(-50% + ${tx}), calc(-50% + ${ty})) rotateX(${spin}deg) rotateY(${spin}deg) scale(1)`;
-            paper.style.opacity = '0';
-        }, 10);
-
-        setTimeout(() => paper.remove(), 4000);
+        setTimeout(() => particle.remove(), 4000);
     }
 }
 
@@ -315,7 +307,7 @@ function initializeCursorTrail() {
         update() {
             this.x += this.vx;
             this.y += this.vy;
-            this.vy += 0.1;
+            this.vy += 0.1; 
             this.life -= this.decay;
         }
 
@@ -647,7 +639,6 @@ function initializeSecretMessage() {
     const secretBtn = document.getElementById('secretBtn');
 
     secretBtn.addEventListener('click', () => {
-        // Darken screen
         const overlay = document.createElement('div');
         overlay.style.cssText = `
             position: fixed;
@@ -660,7 +651,6 @@ function initializeSecretMessage() {
             animation: fadeIn 0.5s ease;
         `;
 
-        // Message box
         const messageBox = document.createElement('div');
         messageBox.style.cssText = `
             position: fixed;
@@ -762,6 +752,7 @@ function initializeMagneticText() {
                 const strength = 1 - distance / maxDistance;
                 const moveX = (distX / distance) * strength * 15;
                 const moveY = (distY / distance) * strength * 15;
+
                 text.style.transform = `translate(${moveX}px, ${moveY}px)`;
             }
         });
