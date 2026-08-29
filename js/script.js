@@ -1,4 +1,3 @@
-
 /* ============================================
    CONFIGURATION OBJECT (EASY CUSTOMIZATION)
    ============================================ */
@@ -25,13 +24,13 @@ const CONFIG = {
     ],
     
     // Love letter (customize with your own message)
-    loveLetter: `প্রিয় সোনা জান, ❤️
+    loveLetter: `প্রিয় সোনা জান, ❤️
 
-​আজ তোমার জন্মদিন। "শুভ জন্মদিন আমার সোনা জান ☺️🎂"... আমি আল্লাহর কাছে দোয়া করি, তিনি যেন তোমার সব কষ্ট দূর করে দেন 🤲✨। আর তুমি যেন খুব খুব খুশি আর সুখে থাকো। 🥰
+​আজ তোমার জন্মদিন। "শুভ জন্মদিন আমার সোনা জান ☺️🎂"... আমি আল্লাহর কাছে দোয়া করি, তিনি যেন তোমার সব কষ্ট দূর করে দেন 🤲✨। আর তুমি যেন খুব খুব খুশি আর সুখে থাকো। 🥰
 
-​যখন এই চিঠিটা লিখছিলাম, তখন তোমার কথা খুব মনে পড়ছিল 🥺। তুমি হয়তো জানো না, তোমাকে ছাড়া থাকাটা আমার জন্য কতটা কঠিন! 🥀 তোমার ওই মিষ্টি হাসি, তোমার ওই মায়াবী চোখগুলো নিমিষেই আমার মন কেড়ে নেয়। 😍👀
+​যখন এই চিঠিটা লিখছিলাম, তখন তোমার কথা খুব মনে পড়ছিল 🥺। তুমি হয়তো জানো না, তোমাকে ছাড়া থাকাটা আমার জন্য কতটা কঠিন! 🥀 তোমার ওই মিষ্টি হাসি, তোমার ওই মায়াবী চোখগুলো নিমিষেই আমার মন কেড়ে নেয়। 😍👀
 
-​তুমি এমন একজন মানুষ যাকে আমি এতটা ভালোবাসবো, সেটা আমি আগে কখনোই বুঝিনি... আমি ভাবতেই পারিনি তোমাকে আমি এতটা ভালোবেসে ফেলবো। 💖 তুমি আমার জীবনে এসেছো, আর আমি আমার পুরোটা জীবন শুধু তোমাকে নিয়েই বাঁচতে চাই। 👫💕
+​তুমি এমন একজন মানুষ যাকে আমি এতটা ভালোবাসবো, সেটা আমি আগে কখনোই বুঝিনি... আমি ভাবতেই পারিনি তোমাকে আমি এতটা ভালোবেসে ফেলবো। 💖 তুমি আমার জীবনে এসেছো, আর আমি আমার পুরোটা জীবন শুধু তোমাকে নিয়েই বাঁচতে চাই। 👫💕
 
 ​জানি না আমি আর কতদিন আছি তোমার সাথে😔... আর কতদিন থাকতে পারবো তোমার সাথে... ☺️🕊️ শুধু জানি তোমাকে অনেক ভালোবাসি Sona jaaan...🫣💖🌸
 ​আজ তোমার জন্মদিনে, আমি শুধু একটাই চাই—যে তুমি সবসময় খুশি থাকো, সবসময় হাসো 😊, এবং জানো যে আমি সবসময় তোমার পাশে আছি 🫂❤️।
@@ -75,7 +74,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /* ============================================
-   SPLASH SCREEN LOGIC
+   SPLASH SCREEN LOGIC & FIREWORKS
    ============================================ */
 function initializeSplashScreen() {
     const enterBtn = document.getElementById('enterBtn');
@@ -85,6 +84,14 @@ function initializeSplashScreen() {
         setTimeout(() => {
             splashScreen.style.pointerEvents = 'none';
         }, 800);
+
+        // বাজি এবং লাভ বেলুন ফাটানোর ম্যাজিক কল করা হলো
+        fireworksAndBalloons();
+        
+        // মোমবাতি নেভানোর সময় যে বাজি ফাটে (যদি confetti লাইব্রেরি অ্যাড করা থাকে)
+        if (typeof confetti === "function") {
+            confetti({ particleCount: 150, spread: 100, origin: { y: 0.6 } });
+        }
     });
 
     // Auto-hide splash after 10 seconds
@@ -93,6 +100,49 @@ function initializeSplashScreen() {
             document.getElementById('splashScreen').classList.add('hidden');
         }
     }, 10000);
+}
+
+// ==========================================
+// বাজি এবং লাভ বেলুন চারদিকে ফাটানোর ফাংশন
+// ==========================================
+function fireworksAndBalloons() {
+    const emojis = ['🎆', '🎇', '🎉', '🎊', '❤️', '💖', '🎈']; 
+    const totalParticles = 80; // একসাথে ৮০টি বাজি ও বেলুন ফাটবে
+
+    for (let i = 0; i < totalParticles; i++) {
+        let particle = document.createElement('div');
+        particle.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+        
+        // স্ক্রিনের ঠিক মাঝখান থেকে বিস্ফোরণ শুরু হবে
+        particle.style.position = 'fixed';
+        particle.style.left = '50%';
+        particle.style.top = '50%'; 
+        particle.style.fontSize = (Math.random() * 25 + 15) + 'px'; 
+        particle.style.zIndex = '99999';
+        particle.style.pointerEvents = 'none';
+        
+        // চারদিকে ছিটকে পড়ার ক্যালকুলেশন
+        const angle = Math.random() * Math.PI * 2;
+        const distance = Math.random() * 300 + 50;
+        const tx = Math.cos(angle) * distance;
+        const ty = Math.sin(angle) * distance - (Math.random() * 250);
+        
+        particle.style.transition = 'transform 2.5s cubic-bezier(0.1, 0.8, 0.3, 1), opacity 2.5s ease-out';
+        particle.style.transform = `translate(-50%, -50%) scale(0)`;
+        
+        document.body.appendChild(particle);
+
+        // ১০ মিলি-সেকেন্ড পর ব্লাস্ট হবে
+        setTimeout(() => {
+            particle.style.transform = `translate(calc(-50% + ${tx}px), calc(-50% + ${ty}px)) scale(${Math.random() + 0.7}) rotate(${Math.random() * 360}deg)`;
+            particle.style.opacity = '0';
+        }, 10);
+
+        // ২.৫ সেকেন্ড পর স্ক্রিন থেকে মুছে ফেলা
+        setTimeout(() => {
+            particle.remove();
+        }, 2500);
+    }
 }
 
 /* ============================================
@@ -496,44 +546,6 @@ function typewriterEffect(text, element) {
 /* ============================================
    BIRTHDAY CAKE & WISHES
    ============================================ */
-/* ============================================
-   OLD CAKE INITIALIZATION (DISABLED)
-   ============================================ */
-/*
-function initializeCake() {
-    const makeWishBtn = document.getElementById('makeWishBtn');
-    const flame = document.getElementById('flame');
-
-    makeWishBtn.addEventListener('click', () => {
-        flame.classList.add('out');
-
-        // Create smoke
-        const cake = document.getElementById('birthdayCake');
-        const rect = cake.getBoundingClientRect();
-        for (let i = 0; i < 5; i++) {
-            const smoke = document.createElement('div');
-            smoke.className = 'smoke';
-            smoke.style.left = (rect.left + rect.width / 2 - 10) + 'px';
-            smoke.style.top = (rect.top - 30 - i * 10) + 'px';
-            document.body.appendChild(smoke);
-
-            setTimeout(() => {
-                smoke.style.opacity = '0';
-                smoke.style.transform = `translateY(-30px)`;
-            }, 100);
-
-            setTimeout(() => smoke.remove(), 1500);
-        }
-
-        // Show wish
-        setTimeout(() => {
-            showWish();
-        }, 800);
-    });
-}
-*/
-
-
 function showWish() {
     const randomWish = CONFIG.wishes[Math.floor(Math.random() * CONFIG.wishes.length)];
 
