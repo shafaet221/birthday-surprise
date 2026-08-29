@@ -66,7 +66,6 @@ document.addEventListener('DOMContentLoaded', () => {
     initializeHeartInteraction();
     initializeCarousel();
     initializeEnvelope();
-    // initializeCake(); // Disabled - using new 3D cake
     initializeDateCounter();
     initializeVoiceNote();
     initializeSecretMessage();
@@ -74,7 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /* ============================================
-   SPLASH SCREEN LOGIC & FIREWORKS
+   SPLASH SCREEN LOGIC & FULL-SCREEN MAGIC
    ============================================ */
 function initializeSplashScreen() {
     const enterBtn = document.getElementById('enterBtn');
@@ -85,13 +84,8 @@ function initializeSplashScreen() {
             splashScreen.style.pointerEvents = 'none';
         }, 800);
 
-        // বাজি এবং লাভ বেলুন ফাটানোর ম্যাজিক কল করা হলো
+        // ফুল-স্ক্রিন বেলুন এবং ঝিরি ঝিরি কাগজ ফাটানোর কল
         fireworksAndBalloons();
-        
-        // মোমবাতি নেভানোর সময় যে বাজি ফাটে (যদি confetti লাইব্রেরি অ্যাড করা থাকে)
-        if (typeof confetti === "function") {
-            confetti({ particleCount: 150, spread: 100, origin: { y: 0.6 } });
-        }
     });
 
     // Auto-hide splash after 10 seconds
@@ -103,45 +97,73 @@ function initializeSplashScreen() {
 }
 
 // ==========================================
-// বাজি এবং লাভ বেলুন চারদিকে ফাটানোর ফাংশন
+// ফুল-স্ক্রিন ঝিরি ঝিরি কাগজ এবং বেলুন ফাংশন
 // ==========================================
 function fireworksAndBalloons() {
-    const emojis = ['🎆', '🎇', '🎉', '🎊', '❤️', '💖', '🎈']; 
-    const totalParticles = 80; // একসাথে ৮০টি বাজি ও বেলুন ফাটবে
-
-    for (let i = 0; i < totalParticles; i++) {
+    const emojis = ['🎈', '❤️', '💖', '💕']; 
+    const paperColors = ['#ff0a54', '#ff477e', '#ff7096', '#ff85a1', '#fbb1bd', '#ffd166', '#06d6a0', '#118ab2', '#073b4c', '#ffffff'];
+    
+    // ১. বড় ইমোজি (বেলুন ও লাভ) - ৪০টা
+    for (let i = 0; i < 40; i++) {
         let particle = document.createElement('div');
         particle.innerText = emojis[Math.floor(Math.random() * emojis.length)];
-        
-        // স্ক্রিনের ঠিক মাঝখান থেকে বিস্ফোরণ শুরু হবে
         particle.style.position = 'fixed';
-        particle.style.left = '50%';
-        particle.style.top = '50%'; 
-        particle.style.fontSize = (Math.random() * 25 + 15) + 'px'; 
-        particle.style.zIndex = '99999';
+        particle.style.left = '50vw';
+        particle.style.top = '50vh'; 
+        particle.style.fontSize = (Math.random() * 25 + 20) + 'px'; 
+        particle.style.zIndex = '999999';
         particle.style.pointerEvents = 'none';
-        
-        // চারদিকে ছিটকে পড়ার ক্যালকুলেশন
-        const angle = Math.random() * Math.PI * 2;
-        const distance = Math.random() * 300 + 50;
-        const tx = Math.cos(angle) * distance;
-        const ty = Math.sin(angle) * distance - (Math.random() * 250);
-        
-        particle.style.transition = 'transform 2.5s cubic-bezier(0.1, 0.8, 0.3, 1), opacity 2.5s ease-out';
         particle.style.transform = `translate(-50%, -50%) scale(0)`;
+        particle.style.transition = 'transform 3s cubic-bezier(0.1, 0.8, 0.3, 1), opacity 3s ease-out';
         
         document.body.appendChild(particle);
 
-        // ১০ মিলি-সেকেন্ড পর ব্লাস্ট হবে
+        const angle = Math.random() * Math.PI * 2;
+        const radius = Math.random() * 50 + 20; 
+        const tx = Math.cos(angle) * radius + 'vw';
+        const ty = Math.sin(angle) * radius + 'vh';
+
         setTimeout(() => {
-            particle.style.transform = `translate(calc(-50% + ${tx}px), calc(-50% + ${ty}px)) scale(${Math.random() + 0.7}) rotate(${Math.random() * 360}deg)`;
+            particle.style.transform = `translate(calc(-50% + ${tx}), calc(-50% + ${ty})) scale(${Math.random() + 0.8}) rotate(${Math.random() * 360}deg)`;
             particle.style.opacity = '0';
         }, 10);
 
-        // ২.৫ সেকেন্ড পর স্ক্রিন থেকে মুছে ফেলা
+        setTimeout(() => particle.remove(), 3000);
+    }
+
+    // ২. ঝিরি ঝিরি কাগজ (২০০ টুকরো - পুরো স্ক্রিন কভার করবে)
+    for (let i = 0; i < 200; i++) {
+        let paper = document.createElement('div');
+        paper.style.position = 'fixed';
+        paper.style.left = '50vw';
+        paper.style.top = '50vh';
+        
+        // কাগজের সাইজ
+        paper.style.width = (Math.random() * 8 + 4) + 'px';
+        paper.style.height = (Math.random() * 12 + 6) + 'px';
+        paper.style.backgroundColor = paperColors[Math.floor(Math.random() * paperColors.length)];
+        paper.style.zIndex = '999998'; 
+        paper.style.pointerEvents = 'none';
+        paper.style.transform = `translate(-50%, -50%) scale(0)`;
+        paper.style.transition = `transform ${Math.random() * 2 + 2}s cubic-bezier(0.25, 1, 0.5, 1), opacity 3s ease-out`;
+        
+        document.body.appendChild(paper);
+
+        // পুরো স্ক্রিনে ছড়ানোর ম্যাজিক
+        const angle = Math.random() * Math.PI * 2;
+        const radiusX = Math.random() * 80 + 20; // 100vw পর্যন্ত ছড়াবে
+        const radiusY = Math.random() * 80 + 20; 
+        
+        const tx = (Math.cos(angle) * radiusX) + 'vw';
+        const ty = (Math.sin(angle) * radiusY) + 'vh';
+        const spin = Math.random() * 720 + 360; // স্পিন করবে
+
         setTimeout(() => {
-            particle.remove();
-        }, 2500);
+            paper.style.transform = `translate(calc(-50% + ${tx}), calc(-50% + ${ty})) rotateX(${spin}deg) rotateY(${spin}deg) scale(1)`;
+            paper.style.opacity = '0';
+        }, 10);
+
+        setTimeout(() => paper.remove(), 4000);
     }
 }
 
@@ -231,7 +253,6 @@ function initializeNightSky() {
         }
     }
 
-    // Initialize stars
     for (let i = 0; i < 40; i++) {
         stars.push(new Star());
     }
@@ -240,13 +261,11 @@ function initializeNightSky() {
         ctx.fillStyle = 'rgba(2, 5, 11, 0.18)';
         ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-        // Update and draw stars
         stars.forEach(star => {
             star.update();
             star.draw(ctx);
         });
 
-        // Update and draw shooting stars
         shootingStars.forEach((star, index) => {
             star.update();
             star.draw(ctx);
@@ -255,7 +274,6 @@ function initializeNightSky() {
             }
         });
 
-        // Randomly create shooting stars
         if (Math.random() < 0.0006) {
             shootingStars.push(new ShootingStar());
         }
@@ -297,7 +315,7 @@ function initializeCursorTrail() {
         update() {
             this.x += this.vx;
             this.y += this.vy;
-            this.vy += 0.1; // Gravity
+            this.vy += 0.1;
             this.life -= this.decay;
         }
 
@@ -370,10 +388,7 @@ function initializeHeartInteraction() {
         heart.classList.add('pulsing');
         setTimeout(() => heart.classList.remove('pulsing'), 600);
 
-        // Sparkle burst
         createSparkles(heart);
-
-        // Show floating text
         showHeartText();
     });
 }
@@ -696,7 +711,6 @@ function initializeSecretMessage() {
         document.body.appendChild(overlay);
         document.body.appendChild(messageBox);
 
-        // Create global animation styles
         if (!document.getElementById('animationStyles')) {
             const style = document.createElement('style');
             style.id = 'animationStyles';
@@ -710,24 +724,12 @@ function initializeSecretMessage() {
                     to { opacity: 0; }
                 }
                 @keyframes popupAppear {
-                    from {
-                        opacity: 0;
-                        transform: translate(-50%, -50%) scale(0.8);
-                    }
-                    to {
-                        opacity: 1;
-                        transform: translate(-50%, -50%) scale(1);
-                    }
+                    from { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
+                    to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
                 }
                 @keyframes popupClose {
-                    from {
-                        opacity: 1;
-                        transform: translate(-50%, -50%) scale(1);
-                    }
-                    to {
-                        opacity: 0;
-                        transform: translate(-50%, -50%) scale(0.8);
-                    }
+                    from { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+                    to { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
                 }
             `;
             document.head.appendChild(style);
@@ -760,7 +762,6 @@ function initializeMagneticText() {
                 const strength = 1 - distance / maxDistance;
                 const moveX = (distX / distance) * strength * 15;
                 const moveY = (distY / distance) * strength * 15;
-
                 text.style.transform = `translate(${moveX}px, ${moveY}px)`;
             }
         });
@@ -771,7 +772,6 @@ function initializeMagneticText() {
     });
 }
 
-// Initialize magnetic text on all important headings
 document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => {
         const importantTexts = document.querySelectorAll('h1, h2, h3');
